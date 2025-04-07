@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Singer - Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #a0c1b8;
+      --secondary-color: #192523;
+      --accent-color: #e9c46a;
+      --text-light: #f0f0f0;
+      --text-dark: #333333;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #192523, #2d3c39);
+      color: var(--text-light);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a2a28;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 10px;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, rgba(25, 37, 35, 0.9), rgba(31, 48, 45, 0.9)),
+      url('/api/placeholder/1600/800') center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 30%, rgba(25, 37, 35, 0.8) 70%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #ffffff, var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-custom {
+      background: linear-gradient(90deg, var(--primary-color), #75a99d);
+      color: var(--text-dark);
+      font-weight: 600;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-custom:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      background: linear-gradient(90deg, #75a99d, var(--primary-color));
+      color: var(--text-dark);
+    }
+
+    .video-card {
+      background: rgba(25, 37, 35, 0.4);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      height: 100%;
+    }
+
+    .video-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, rgba(25, 37, 35, 0.5), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .video-card:hover .video-overlay {
+      opacity: 1;
+    }
+
+    .video-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      color: white;
+      font-size: 4rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .video-card:hover .video-play-icon {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 3rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), transparent);
+      border-radius: 2px;
+    }
+
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(160, 193, 184, 0.2), rgba(160, 193, 184, 0.1));
+      color: var(--text-light);
+      font-size: 1.5rem;
+      margin: 0 10px;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(135deg, rgba(160, 193, 184, 0.4), rgba(160, 193, 184, 0.2));
+      color: var(--primary-color);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .navbar {
+      background: rgba(25, 37, 35, 0.8);
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(25, 37, 35, 0.95);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: var(--primary-color) !important;
+    }
+
+    .nav-link {
+      color: var(--text-light) !important;
+      font-weight: 500;
+      margin: 0 10px;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color) !important;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    footer {
+      background: linear-gradient(0deg, #192523, rgba(45, 60, 57, 0.8));
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(160, 193, 184, 0.5), transparent);
+    }
+
+    .footer-heading {
+      color: var(--primary-color);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .copyright {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Animation for the mouse scroll indicator */
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .mouse {
+      width: 30px;
+      height: 50px;
+      border: 2px solid var(--text-light);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .mouse-wheel {
+      width: 6px;
+      height: 10px;
+      background: var(--text-light);
+      border-radius: 3px;
+      position: absolute;
+      top: 10px;
+      animation: scroll 1.5s infinite;
+    }
+
+    @keyframes scroll {
+      0% {
+        opacity: 1;
+        top: 10px;
+      }
+      100% {
+        opacity: 0;
+        top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">JOHN SINGER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars" style="color: var(--text-light);"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#music">Music</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="container hero-content">
+    <div class="row align-items-center">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
+        <h1>JOHN SINGER</h1>
+        <p class="subtitle">VOCAL ARTIST • PERFORMER • SONGWRITER</p>
+        <a href="#music" class="btn btn-custom">Explore My Music</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="scroll-down">
+    <div class="mouse">
+      <div class="mouse-wheel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Music Section -->
+<section id="music" class="py-5">
+  <div class="container py-5">
+    <div class="row mb-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+        <h2 class="section-title display-4">My Music</h2>
+        <p class="lead">Experience the sounds that define my journey as an artist.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <div class="video-overlay"></div>
+            <div class="video-play-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+          </div>
+          <div class="p-4">
+            <h5>Never Gonna Give You Up</h5>
+            <p class="text-muted">Official Music Video</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
+            <div class="video-overlay"></div>
+            <div class="video-play-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+          </div>
+          <div class="p-4">
+            <h5>Together Forever</h5>
+            <p class="text-muted">Live Performance</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/oHg5SJYRHA0" allowfullscreen></iframe>
+            <div class="video-overlay"></div>
+            <div class="video-play-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+          </div>
+          <div class="p-4">
+            <h5>Whenever You Need Somebody</h5>
+            <p class="text-muted">Official Audio</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up" data-aos-duration="800">
+      <a href="https://youtube.com/@johnsinger" target="_blank" class="btn btn-custom">
+        <i class="fab fa-youtube me-2"></i> View More on YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5" style="background: linear-gradient(135deg, rgba(25, 37, 35, 0.9), rgba(45, 60, 57, 0.9));">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
+        <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+          <img src="/api/placeholder/600/600" alt="John Singer" class="img-fluid" style="width: 100%;">
+        </div>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+        <h2 class="section-title display-4">About Me</h2>
+        <p class="lead">Passionate about creating music that resonates with the soul.</p>
+        <p>I'm John Singer, a vocal artist, performer, and songwriter dedicated to crafting authentic musical experiences. With a unique blend of contemporary and classic influences, my sound transcends genres while maintaining a signature style that audiences connect with.</p>
+        <p>My journey in music began over a decade ago, and I've been fortunate to collaborate with talented artists and producers who have helped shape my artistic vision.</p>
+
+        <div class="mt-4">
+          <a href="#contact" class="btn btn-custom">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+  <div class="container py-5">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="section-title display-4">Connect With Me</h2>
+        <p class="lead">Let's collaborate and create something amazing together.</p>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+        <div class="text-center p-4">
+          <div class="mb-4">
+            <i class="fas fa-envelope" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+          </div>
+          <h4>Email Me</h4>
+          <p><a href="mailto:johnsinger@example.com" class="text-decoration-none text-light">johnsinger@example.com</a></p>
+        </div>
+      </div>
+
+      <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+        <div class="text-center p-4">
+          <div class="mb-4">
+            <i class="fas fa-map-marker-alt" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+          </div>
+          <h4>Find Me</h4>
+          <p>Performing live across the country</p>
+        </div>
+      </div>
+
+      <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+        <div class="text-center p-4">
+          <div class="mb-4">
+            <i class="fas fa-music" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+          </div>
+          <h4>Listen To Me</h4>
+          <p>Available on all major streaming platforms</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+      <div class="col-lg-8" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+        <form class="bg-dark bg-opacity-25 p-4 rounded-4 shadow" style="backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input type="text" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Your Name" style="border-radius: 10px;">
+            </div>
+            <div class="col-md-6">
+              <input type="email" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Your Email" style="border-radius: 10px;">
+            </div>
+            <div class="col-12">
+              <input type="text" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Subject" style="border-radius: 10px;">
+            </div>
+            <div class="col-12">
+              <textarea class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" rows="5" placeholder="Your Message" style="border-radius: 10px;"></textarea>
+            </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-custom px-5 py-3">Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h3 class="footer-heading">John Singer</h3>
+        <p>Bringing musical experiences that touch hearts and elevate spirits. Join me on this journey of creativity and expression.</p>
+        <div class="mt-4">
+          <a href="https://facebook.com/johnsinger" target="_blank" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://youtube.com/@johnsinger" target="_blank" class="social-icon">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://instagram.com/johnsinger" target="_blank" class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/johnsinger" target="_blank" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#home" class="text-decoration-none text-light">Home</a></li>
+          <li class="mb-2"><a href="#music" class="text-decoration-none text-light">Music</a></li>
+          <li class="mb-2"><a href="#about" class="text-decoration-none text-light">About</a></li>
+          <li class="mb-2"><a href="#contact" class="text-decoration-none text-light">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <h3 class="footer-heading">Newsletter</h3>
+        <p>Subscribe to stay updated with new releases and upcoming events.</p>
+        <div class="input-group mt-3">
+          <input type="email" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Your Email" style="border-radius: 50px 0 0 50px;">
+          <button class="btn btn-custom" type="button" style="border-radius: 0 50px 50px 0;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright text-center">
+      <p>&copy; 2025 John Singer. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap & Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- AOS Animation Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<!-- Custom JS -->
+<script>
+  // Initialize AOS animations
+  AOS.init({
+    once: true
+  });
+
+  // Add scrolled class to navbar on scroll
+  document.addEventListener("DOMContentLoaded", function() {
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse.classList.contains('show')) {
+            document.querySelector('.navbar-toggler').click();
+          }
+        }
+      });
+    });
+
+    // Video hover effects
+    const videoCards = document.querySelectorAll('.video-card');
+    videoCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.querySelector('iframe').style.transform = 'scale(1.05)';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.querySelector('iframe').style.transform = 'scale(1)';
+      });
+    });
+  });
+</script>
+</body>
+</html>
