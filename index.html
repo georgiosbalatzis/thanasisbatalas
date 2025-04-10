@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thanasis Batalas - Portfolio</title>
+  <title>Θανάσης Μπαταλάς - Portfolio</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -14,344 +14,48 @@
   <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
+  <!-- Swiper Carousel -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.css" rel="stylesheet">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --primary-color: #a0c1b8;
-      --secondary-color: #192523;
-      --accent-color: #e9c46a;
-      --text-light: #f0f0f0;
-      --text-dark: #333333;
-      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #192523, #2d3c39);
-      color: var(--text-light);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #1a2a28;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary-color);
-      border-radius: 10px;
-    }
-
-    .hero-section {
-      background: linear-gradient(135deg, rgba(25, 37, 35, 0.9), rgba(31, 48, 45, 0.9)),
-      url('bg.jpg') center/cover no-repeat;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, transparent 30%, rgba(25, 37, 35, 0.8) 70%);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    h1 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: 5rem;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(90deg, #ffffff, var(--primary-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-    }
-
-    .subtitle {
-      font-size: 1.5rem;
-      font-weight: 300;
-      letter-spacing: 3px;
-      margin-bottom: 2rem;
-    }
-
-    .btn-custom {
-      background: linear-gradient(90deg, var(--primary-color), #75a99d);
-      color: var(--text-dark);
-      font-weight: 600;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 50px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: var(--transition);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .btn-custom:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      background: linear-gradient(90deg, #75a99d, var(--primary-color));
-      color: var(--text-dark);
-    }
-
-    .video-card {
-      background: rgba(25, 37, 35, 0.4);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      height: 100%;
-    }
-
-    .video-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
-    }
-
-    .video-wrapper {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .video-wrapper iframe {
-      width: 100%;
-      aspect-ratio: 16/9;
-      border: none;
-      transition: var(--transition);
-    }
-
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(0deg, rgba(25, 37, 35, 0.5), transparent);
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .video-card:hover .video-overlay {
-      opacity: 1;
-    }
-
-    .video-play-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
-      color: white;
-      font-size: 4rem;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .video-card:hover .video-play-icon {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .section-title {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 3rem;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 0;
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), transparent);
-      border-radius: 2px;
-    }
-
-    .social-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(160, 193, 184, 0.2), rgba(160, 193, 184, 0.1));
-      color: var(--text-light);
-      font-size: 1.5rem;
-      margin: 0 10px;
-      transition: var(--transition);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: linear-gradient(135deg, rgba(160, 193, 184, 0.4), rgba(160, 193, 184, 0.2));
-      color: var(--primary-color);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    .navbar {
-      background: rgba(25, 37, 35, 0.8);
-      backdrop-filter: blur(10px);
-      transition: var(--transition);
-    }
-
-    .navbar.scrolled {
-      background: rgba(25, 37, 35, 0.95);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-
-    .navbar-brand {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      color: var(--primary-color) !important;
-    }
-
-    .nav-link {
-      color: var(--text-light) !important;
-      font-weight: 500;
-      margin: 0 10px;
-      position: relative;
-      transition: var(--transition);
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary-color);
-      transition: var(--transition);
-    }
-
-    .nav-link:hover {
-      color: var(--primary-color) !important;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    footer {
-      background: linear-gradient(0deg, #192523, rgba(45, 60, 57, 0.8));
-      padding: 5rem 0 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(160, 193, 184, 0.5), transparent);
-    }
-
-    .footer-heading {
-      color: var(--primary-color);
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .copyright {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    /* Animation for the mouse scroll indicator */
-    .scroll-down {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 10;
-    }
-
-    .mouse {
-      width: 30px;
-      height: 50px;
-      border: 2px solid var(--text-light);
-      border-radius: 20px;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .mouse-wheel {
-      width: 6px;
-      height: 10px;
-      background: var(--text-light);
-      border-radius: 3px;
-      position: absolute;
-      top: 10px;
-      animation: scroll 1.5s infinite;
-    }
-
-    @keyframes scroll {
-      0% {
-        opacity: 1;
-        top: 10px;
-      }
-      100% {
-        opacity: 0;
-        top: 30px;
-      }
-    }
-  </style>
+  <!-- Custom CSS -->
+  <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">THANASIS BATALAS</a>
+    <a class="navbar-brand" href="#" data-lang-en="THANASIS MPATALAS" data-lang-el="ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ">ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars" style="color: var(--text-light);"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" href="#home" data-lang-en="Home" data-lang-el="Αρχική">Αρχική</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#music">Music</a>
+          <a class="nav-link" href="#music" data-lang-en="Music" data-lang-el="Μουσική">Μουσική</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#discography" data-lang-en="Discography" data-lang-el="Δισκογραφία">Δισκογραφία</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#contact">Contact</a>
+          <a class="nav-link" href="#about" data-lang-en="About" data-lang-el="Σχετικά">Σχετικά</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact" data-lang-en="Contact" data-lang-el="Επικοινωνία">Επικοινωνία</a>
+        </li>
+        <li class="nav-item language-switcher dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-globe"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-language="el">EL</a></li>
+            <li><a class="dropdown-item" href="#" data-language="en">EN</a></li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -363,9 +67,9 @@
   <div class="container hero-content">
     <div class="row align-items-center">
       <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
-        <h1>THANASIS BATALAS</h1>
-        <p class="subtitle">VOCAL ARTIST • PERFORMER • SONGWRITER</p>
-        <a href="#music" class="btn btn-custom">Explore My Music</a>
+        <h1 data-lang-en="THANASIS MPATALAS" data-lang-el="ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ">ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ</h1>
+        <p class="subtitle" data-lang-en="VOCAL ARTIST • PERFORMER • SONGWRITER" data-lang-el="ΤΡΑΓΟΥΔΙΣΤΗΣ • ΕΡΜΗΝΕΥΤΗΣ • ΣΤΙΧΟΥΡΓΟΣ">ΤΡΑΓΟΥΔΙΣΤΗΣ • ΕΡΜΗΝΕΥΤΗΣ • ΣΤΙΧΟΥΡΓΟΣ</p>
+        <a href="#music" class="btn btn-custom" data-lang-en="Explore My Music" data-lang-el="Ανακαλύψτε τη Μουσική μου">Ανακαλύψτε τη Μουσική μου</a>
       </div>
     </div>
   </div>
@@ -383,77 +87,233 @@
   <div class="container py-5">
     <div class="row mb-5">
       <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="section-title display-4">My Music</h2>
-        <p class="lead">Experience the sounds that define my journey as an artist.</p>
+        <h2 class="section-title display-4" data-lang-en="My Music" data-lang-el="Η Μουσική μου">Η Μουσική μου</h2>
+        <p class="lead" data-lang-en="Experience the sounds that define my journey as an artist." data-lang-el="Ανακαλύψτε τους ήχους που ορίζουν την πορεία μου ως καλλιτέχνης.">Ανακαλύψτε τους ήχους που ορίζουν την πορεία μου ως καλλιτέχνης.</p>
       </div>
     </div>
 
-    <!--<div class="row g-4">
-      <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
-        <div class="video-card">
-          <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/6UDr_rDfp4Y" allowfullscreen></iframe>
-            <div class="video-overlay"></div>
-            <div class="video-play-icon">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="p-4">
-            <h5>ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ ΓΥΡΟ ΓΥΡΟ ΟΛΑ</h5>
-            <p class="text-muted">Official Music Video</p>
-          </div>
-        </div>
-      </div>
+    <!-- Media Content Tabs -->
+    <div class="media-tabs" data-aos="fade-up" data-aos-duration="800">
+      <div class="media-tab active" data-target="spotify" data-lang-en="Spotify" data-lang-el="Spotify">Spotify</div>
+      <div class="media-tab" data-target="youtube" data-lang-en="YouTube" data-lang-el="YouTube">YouTube</div>
+    </div>
 
-      <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-        <div class="video-card">
-          <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/Cc1EYiPIrhc" allowfullscreen></iframe>
-            <div class="video-overlay"></div>
-            <div class="video-play-icon">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="p-4">
-            <h5>Αναστορώ Χαράματα</h5>
-            <p class="text-muted">Live Performance</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
-        <div class="video-card">
-          <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/fCCBPXULKYM" allowfullscreen></iframe>
-            <div class="video-overlay"></div>
-            <div class="video-play-icon">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="p-4">
-            <h5>ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ ΒΟΥΡΚΩΣΑΝΕ ΤΑ ΜΑΤΙΑ ΜΟΥ</h5>
-            <p class="text-muted">Official Audio</p>
-          </div>
-        </div>
-      </div>
-    </div>--->
-
-    <!-- Spotify Player -->
-    <div class="row mt-5" data-aos="fade-up" data-aos-duration="800">
-      <div class="col-12">
+    <!-- Media Carousel Container -->
+    <div class="media-carousel-container" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+      <!-- Spotify Content -->
+      <div class="media-content active" id="spotify-content">
         <div class="spotify-card p-4" style="background: rgba(25, 37, 35, 0.4); border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
-          <h4 class="mb-4"><i class="fab fa-spotify me-2" style="color: #1DB954;"></i> Listen on Spotify</h4>
+          <h4 class="mb-4"><i class="fab fa-spotify me-2" style="color: #1DB954;"></i> <span data-lang-en="Listen on Spotify" data-lang-el="Ακούστε στο Spotify">Ακούστε στο Spotify</span></h4>
           <div class="ratio ratio-21x9">
             <iframe src="https://open.spotify.com/embed/artist/2dlxLO3DMm86701AqRxhcQ" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
+        </div>
+      </div>
+
+      <!-- YouTube Content -->
+      <div class="media-content" id="youtube-content">
+        <div class="swiper media-carousel">
+          <div class="swiper-wrapper">
+            <!-- Video Card 1 -->
+            <div class="swiper-slide">
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <iframe src="https://www.youtube.com/embed/6UDr_rDfp4Y" allowfullscreen></iframe>
+                  <div class="video-overlay"></div>
+                  <div class="video-play-icon">
+                    <i class="fas fa-play-circle"></i>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h5>ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ ΓΥΡΟ ΓΥΡΟ ΟΛΑ</h5>
+                  <p class="text-muted" data-lang-en="Official Music Video" data-lang-el="Επίσημο Μουσικό Βίντεο">Επίσημο Μουσικό Βίντεο</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Card 2 -->
+            <div class="swiper-slide">
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <iframe src="https://www.youtube.com/embed/Cc1EYiPIrhc" allowfullscreen></iframe>
+                  <div class="video-overlay"></div>
+                  <div class="video-play-icon">
+                    <i class="fas fa-play-circle"></i>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h5>Αναστορώ Χαράματα</h5>
+                  <p class="text-muted" data-lang-en="Live Performance" data-lang-el="Ζωντανή Εμφάνιση">Ζωντανή Εμφάνιση</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Card 3 -->
+            <div class="swiper-slide">
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <iframe src="https://www.youtube.com/embed/fCCBPXULKYM" allowfullscreen></iframe>
+                  <div class="video-overlay"></div>
+                  <div class="video-play-icon">
+                    <i class="fas fa-play-circle"></i>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h5>ΘΑΝΑΣΗΣ ΜΠΑΤΑΛΑΣ ΒΟΥΡΚΩΣΑΝΕ ΤΑ ΜΑΤΙΑ ΜΟΥ</h5>
+                  <p class="text-muted" data-lang-en="Official Audio" data-lang-el="Επίσημο Ηχητικό">Επίσημο Ηχητικό</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Carousel Navigation Buttons -->
+        <div class="media-nav-btn media-prev">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="media-nav-btn media-next">
+          <i class="fas fa-chevron-right"></i>
         </div>
       </div>
     </div>
 
     <div class="text-center mt-5" data-aos="fade-up" data-aos-duration="800">
       <a href="https://www.youtube.com/@thanasismpatalas2032" target="_blank" class="btn btn-custom">
-        <i class="fab fa-youtube me-2"></i> View More on YouTube
+        <i class="fab fa-youtube me-2"></i> <span data-lang-en="View More on YouTube" data-lang-el="Περισσότερα στο YouTube">Περισσότερα στο YouTube</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- Discography Section -->
+<section id="discography" class="py-5" style="background: linear-gradient(135deg, rgba(31, 48, 45, 0.9), rgba(25, 37, 35, 0.9));">
+  <div class="container py-5">
+    <div class="row mb-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+        <h2 class="section-title display-4" data-lang-en="Discography & Credits" data-lang-el="Δισκογραφία & Συντελεστές">Δισκογραφία & Συντελεστές</h2>
+        <p class="lead" data-lang-en="Explore my complete collection of songs and the talented people behind them." data-lang-el="Εξερευνήστε την πλήρη συλλογή των τραγουδιών μου και τους ταλαντούχους ανθρώπους πίσω από αυτά.">Εξερευνήστε την πλήρη συλλογή των τραγουδιών μου και τους ταλαντούχους ανθρώπους πίσω από αυτά.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Featured Song Card -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800">
+        <div class="discography-card">
+          <h3 class="song-title">Γύρω Γύρω Όλα</h3>
+          <div class="mb-4">
+            <span class="badge bg-primary me-2">2023</span>
+            <span class="badge bg-secondary">Single</span>
+          </div>
+
+          <h5 class="credits-title" data-lang-en="Credits" data-lang-el="Συντελεστές">Συντελεστές</h5>
+          <ul class="credits-list">
+            <li>
+              <span data-lang-en="Lyrics" data-lang-el="Στίχοι">Στίχοι:</span>
+              <span>Θανάσης Μπαταλάς</span>
+            </li>
+            <li>
+              <span data-lang-en="Music" data-lang-el="Μουσική">Μουσική:</span>
+              <span>Γιώργος Σαμπάνης</span>
+            </li>
+            <li>
+              <span data-lang-en="Arrangement" data-lang-el="Ενορχήστρωση">Ενορχήστρωση:</span>
+              <span>Δημήτρης Κοντόπουλος</span>
+            </li>
+            <li>
+              <span data-lang-en="Production" data-lang-el="Παραγωγή">Παραγωγή:</span>
+              <span>Heaven Music</span>
+            </li>
+          </ul>
+
+          <div class="mt-4">
+            <a href="https://www.youtube.com/watch?v=6UDr_rDfp4Y" target="_blank" class="btn btn-sm btn-custom">
+              <i class="fab fa-youtube me-2"></i> <span data-lang-en="Watch Video" data-lang-el="Δείτε το Βίντεο">Δείτε το Βίντεο</span>
+            </a>
+            <a href="https://open.spotify.com/track/0I1xzIp3TXsYFLR9HAjJL8" target="_blank" class="btn btn-sm btn-outline-light ms-2">
+              <i class="fab fa-spotify me-2"></i> <span data-lang-en="Listen" data-lang-el="Ακούστε">Ακούστε</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Complete Discography Accordion -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+        <div class="discography-card">
+          <h3 class="mb-4" data-lang-en="Complete Discography" data-lang-el="Πλήρης Δισκογραφία">Πλήρης Δισκογραφία</h3>
+
+          <div class="accordion custom-accordion" id="discographyAccordion">
+            <!-- Song 1 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#song1" aria-expanded="false" aria-controls="song1">
+                  Γύρω Γύρω Όλα (2023)
+                </button>
+              </h2>
+              <div id="song1" class="accordion-collapse collapse" data-bs-parent="#discographyAccordion">
+                <div class="accordion-body">
+                  <ul class="credits-list">
+                    <li>
+                      <span data-lang-en="Lyrics" data-lang-el="Στίχοι">Στίχοι:</span>
+                      <span>Θανάσης Μπαταλάς</span>
+                    </li>
+                    <li>
+                      <span data-lang-en="Music" data-lang-el="Μουσική">Μουσική:</span>
+                      <span>Γιώργος Σαμπάνης</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Song 2 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#song2" aria-expanded="false" aria-controls="song2">
+                  Βούρκωσανε τα Μάτια μου (2022)
+                </button>
+              </h2>
+              <div id="song2" class="accordion-collapse collapse" data-bs-parent="#discographyAccordion">
+                <div class="accordion-body">
+                  <ul class="credits-list">
+                    <li>
+                      <span data-lang-en="Lyrics" data-lang-el="Στίχοι">Στίχοι:</span>
+                      <span>Θανάσης Μπαταλάς</span>
+                    </li>
+                    <li>
+                      <span data-lang-en="Music" data-lang-el="Μουσική">Μουσική:</span>
+                      <span>Ζαχαρίας Καρούνης</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Song 3 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#song3" aria-expanded="false" aria-controls="song3">
+                  Αναστορώ Χαράματα (2021)
+                </button>
+              </h2>
+              <div id="song3" class="accordion-collapse collapse" data-bs-parent="#discographyAccordion">
+                <div class="accordion-body">
+                  <ul class="credits-list">
+                    <li>
+                      <span data-lang-en="Lyrics" data-lang-el="Στίχοι">Στίχοι:</span>
+                      <span>Θανάσης Μπαταλάς</span>
+                    </li>
+                    <li>
+                      <span data-lang-en="Music" data-lang-el="Μουσική">Μουσική:</span>
+                      <span>Παραδοσιακό</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add more songs as needed -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -464,15 +324,15 @@
     <div class="row align-items-center">
       <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
         <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-          <img src="img.jpg" alt="Thanasis Batalas" class="img-fluid" style="width: 100%;">
+          <img src="img.jpg" alt="Θανάσης Μπαταλάς" class="img-fluid" style="width: 100%;">
         </div>
       </div>
 
       <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-        <h2 class="section-title display-4">About Me</h2>
-        <p class="lead">Passionate about creating music that resonates with the soul.</p>
-        <p>I'm Thanasis Batalas, a vocal artist, performer, and songwriter dedicated to crafting authentic musical experiences. With a unique blend of contemporary and traditional Greek influences, my sound celebrates cultural heritage while maintaining a signature style that audiences connect with.</p>
-        <p>My journey in music began over a decade ago, and I've been fortunate to collaborate with talented artists and producers who have helped shape my artistic vision.</p>
+        <h2 class="section-title display-4" data-lang-en="About Me" data-lang-el="Σχετικά με Εμένα">Σχετικά με Εμένα</h2>
+        <p class="lead" data-lang-en="Passionate about creating music that resonates with the soul." data-lang-el="Με πάθος για τη δημιουργία μουσικής που αγγίζει την ψυχή.">Με πάθος για τη δημιουργία μουσικής που αγγίζει την ψυχή.</p>
+        <p data-lang-en="I'm Thanasis Mpatalas, a vocal artist, performer, and songwriter dedicated to crafting authentic musical experiences. With a unique blend of contemporary and traditional Greek influences, my sound celebrates cultural heritage while maintaining a signature style that audiences connect with." data-lang-el="Είμαι ο Θανάσης Μπαταλάς, τραγουδιστής, ερμηνευτής και στιχουργός αφοσιωμένος στη δημιουργία αυθεντικών μουσικών εμπειριών. Με ένα μοναδικό συνδυασμό σύγχρονων και παραδοσιακών ελληνικών επιρροών, ο ήχος μου γιορτάζει την πολιτιστική κληρονομιά διατηρώντας παράλληλα ένα χαρακτηριστικό στυλ που συνδέεται με το κοινό.">Είμαι ο Θανάσης Μπαταλάς, τραγουδιστής, ερμηνευτής και στιχουργός αφοσιωμένος στη δημιουργία αυθεντικών μουσικών εμπειριών. Με ένα μοναδικό συνδυασμό σύγχρονων και παραδοσιακών ελληνικών επιρροών, ο ήχος μου γιορτάζει την πολιτιστική κληρονομιά διατηρώντας παράλληλα ένα χαρακτηριστικό στυλ που συνδέεται με το κοινό.</p>
+        <p data-lang-en="My journey in music began over a decade ago, and I've been fortunate to collaborate with talented artists and producers who have helped shape my artistic vision." data-lang-el="Το ταξίδι μου στη μουσική ξεκίνησε πάνω από μια δεκαετία πριν, και είχα την τύχη να συνεργαστώ με ταλαντούχους καλλιτέχνες και παραγωγούς που βοήθησαν να διαμορφώσω το καλλιτεχνικό μου όραμα.">Το ταξίδι μου στη μουσική ξεκίνησε πάνω από μια δεκαετία πριν, και είχα την τύχη να συνεργαστώ με ταλαντούχους καλλιτέχνες και παραγωγούς που βοήθησαν να διαμορφώσω το καλλιτεχνικό μου όραμα.</p>
 
         <div class="mt-4">
           <a href="https://www.facebook.com/mpatalasthanasis" target="_blank" class="social-icon">
@@ -494,7 +354,7 @@
 
 
         <div class="mt-4">
-          <a href="#contact" class="btn btn-custom">Get In Touch</a>
+          <a href="#contact" class="btn btn-custom" data-lang-en="Get In Touch" data-lang-el="Επικοινωνήστε">Επικοινωνήστε</a>
         </div>
       </div>
     </div>
@@ -506,8 +366,8 @@
   <div class="container py-5">
     <div class="row justify-content-center text-center mb-5">
       <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="section-title display-4">Connect With Me</h2>
-        <p class="lead">Let's collaborate and create something amazing together.</p>
+        <h2 class="section-title display-4" data-lang-en="Connect With Me" data-lang-el="Επικοινωνήστε Μαζί μου">Επικοινωνήστε Μαζί μου</h2>
+        <p class="lead" data-lang-en="Let's collaborate and create something amazing together." data-lang-el="Ας συνεργαστούμε και ας δημιουργήσουμε κάτι καταπληκτικό μαζί.">Ας συνεργαστούμε και ας δημιουργήσουμε κάτι καταπληκτικό μαζί.</p>
       </div>
     </div>
 
@@ -517,7 +377,7 @@
           <div class="mb-4">
             <i class="fas fa-envelope" style="font-size: 2.5rem; color: var(--primary-color);"></i>
           </div>
-          <h4>Email Me</h4>
+          <h4 data-lang-en="Email Me" data-lang-el="Email">Email</h4>
           <p><a href="mailto:thanasismpatalas@gmail.com" class="text-decoration-none text-light">thanasismpatalas@gmail.com</a></p>
         </div>
       </div>
@@ -527,8 +387,8 @@
           <div class="mb-4">
             <i class="fas fa-map-marker-alt" style="font-size: 2.5rem; color: var(--primary-color);"></i>
           </div>
-          <h4>Find Me</h4>
-          <p>Performing live</p>
+          <h4 data-lang-en="Find Me" data-lang-el="Βρείτε με">Βρείτε με</h4>
+          <p data-lang-en="Performing live" data-lang-el="Σε ζωντανές εμφανίσεις">Σε ζωντανές εμφανίσεις</p>
         </div>
       </div>
 
@@ -537,30 +397,30 @@
           <div class="mb-4">
             <i class="fas fa-music" style="font-size: 2.5rem; color: var(--primary-color);"></i>
           </div>
-          <h4>Listen To Me</h4>
-          <p>Available on all major streaming platforms</p>
+          <h4 data-lang-en="Listen To Me" data-lang-el="Ακούστε με">Ακούστε με</h4>
+          <p data-lang-en="Available on all major streaming platforms" data-lang-el="Διαθέσιμο σε όλες τις μεγάλες πλατφόρμες streaming">Διαθέσιμο σε όλες τις μεγάλες πλατφόρμες streaming</p>
         </div>
       </div>
     </div>
 
     <div class="row mt-5 justify-content-center">
       <div class="col-lg-8" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-        <form class="bg-dark bg-opacity-25 p-4 rounded-4 shadow" style="backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+        <form id="contactForm" class="bg-dark bg-opacity-25 p-4 rounded-4 shadow" style="backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
           <div class="row g-3">
             <div class="col-md-6">
-              <input type="text" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Your Name" style="border-radius: 10px;">
+              <input type="text" name="name" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Όνομα" data-lang-en-placeholder="Your Name" data-lang-el-placeholder="Όνομα" style="border-radius: 10px;">
             </div>
             <div class="col-md-6">
-              <input type="email" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Your Email" style="border-radius: 10px;">
+              <input type="email" name="email" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Email" data-lang-en-placeholder="Your Email" data-lang-el-placeholder="Email" style="border-radius: 10px;">
             </div>
             <div class="col-12">
-              <input type="text" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Subject" style="border-radius: 10px;">
+              <input type="text" name="subject" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Θέμα" data-lang-en-placeholder="Subject" data-lang-el-placeholder="Θέμα" style="border-radius: 10px;">
             </div>
             <div class="col-12">
-              <textarea class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" rows="5" placeholder="Your Message" style="border-radius: 10px;"></textarea>
+              <textarea name="message" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" rows="5" placeholder="Μήνυμα" data-lang-en-placeholder="Your Message" data-lang-el-placeholder="Μήνυμα" style="border-radius: 10px;"></textarea>
             </div>
             <div class="col-12 text-center">
-              <button type="submit" class="btn btn-custom px-5 py-3">Send Message</button>
+              <button type="submit" class="btn btn-custom px-5 py-3" data-lang-en="Send Message" data-lang-el="Αποστολή">Αποστολή</button>
             </div>
           </div>
         </form>
@@ -574,8 +434,8 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4 mb-4 mb-lg-0">
-        <h3 class="footer-heading">Thanasis Batalas</h3>
-        <p>Bringing musical experiences that touch hearts and elevate spirits. Join me on this journey of creativity and expression.</p>
+        <h3 class="footer-heading" data-lang-en="Thanasis Mpatalas" data-lang-el="Θανάσης Μπαταλάς">Θανάσης Μπαταλάς</h3>
+        <p data-lang-en="Bringing musical experiences that touch hearts and elevate spirits. Join me on this journey of creativity and expression." data-lang-el="Δημιουργώ μουσικές εμπειρίες που αγγίζουν τις καρδιές και ανυψώνουν το πνεύμα. Ελάτε μαζί μου σε αυτό το ταξίδι δημιουργικότητας και έκφρασης.">Δημιουργώ μουσικές εμπειρίες που αγγίζουν τις καρδιές και ανυψώνουν το πνεύμα. Ελάτε μαζί μου σε αυτό το ταξίδι δημιουργικότητας και έκφρασης.</p>
         <div class="mt-4">
           <a href="https://www.facebook.com/mpatalasthanasis" target="_blank" class="social-icon">
             <i class="fab fa-facebook-f"></i>
@@ -596,27 +456,28 @@
       </div>
 
       <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
-        <h3 class="footer-heading">Quick Links</h3>
+        <h3 class="footer-heading" data-lang-en="Quick Links" data-lang-el="Γρήγοροι Σύνδεσμοι">Γρήγοροι Σύνδεσμοι</h3>
         <ul class="list-unstyled">
-          <li class="mb-2"><a href="#home" class="text-decoration-none text-light">Home</a></li>
-          <li class="mb-2"><a href="#music" class="text-decoration-none text-light">Music</a></li>
-          <li class="mb-2"><a href="#about" class="text-decoration-none text-light">About</a></li>
-          <li class="mb-2"><a href="#contact" class="text-decoration-none text-light">Contact</a></li>
+          <li class="mb-2"><a href="#home" class="text-decoration-none text-light" data-lang-en="Home" data-lang-el="Αρχική">Αρχική</a></li>
+          <li class="mb-2"><a href="#music" class="text-decoration-none text-light" data-lang-en="Music" data-lang-el="Μουσική">Μουσική</a></li>
+          <li class="mb-2"><a href="#discography" class="text-decoration-none text-light" data-lang-en="Discography" data-lang-el="Δισκογραφία">Δισκογραφία</a></li>
+          <li class="mb-2"><a href="#about" class="text-decoration-none text-light" data-lang-en="About" data-lang-el="Σχετικά">Σχετικά</a></li>
+          <li class="mb-2"><a href="#contact" class="text-decoration-none text-light" data-lang-en="Contact" data-lang-el="Επικοινωνία">Επικοινωνία</a></li>
         </ul>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <h3 class="footer-heading">Newsletter</h3>
-        <p>Subscribe to stay updated with new releases and upcoming events.</p>
+        <h3 class="footer-heading" data-lang-en="Newsletter" data-lang-el="Ενημερωτικό Δελτίο">Ενημερωτικό Δελτίο</h3>
+        <p data-lang-en="Subscribe to stay updated with new releases and upcoming events." data-lang-el="Εγγραφείτε για να ενημερώνεστε για νέες κυκλοφορίες και επερχόμενες εκδηλώσεις.">Εγγραφείτε για να ενημερώνεστε για νέες κυκλοφορίες και επερχόμενες εκδηλώσεις.</p>
         <div class="input-group mt-3">
-          <input type="email" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Your Email" style="border-radius: 50px 0 0 50px;">
-          <button class="btn btn-custom" type="button" style="border-radius: 0 50px 50px 0;">Subscribe</button>
+          <input type="email" class="form-control bg-dark bg-opacity-50 border-0 text-light py-3" placeholder="Email" data-lang-en-placeholder="Your Email" data-lang-el-placeholder="Email" style="border-radius: 50px 0 0 50px;">
+          <button class="btn btn-custom" type="button" style="border-radius: 0 50px 50px 0;" data-lang-en="Subscribe" data-lang-el="Εγγραφή">Εγγραφή</button>
         </div>
       </div>
     </div>
 
     <div class="copyright text-center">
-      <p>&copy; 2025 Thanasis Batalas. All rights reserved.</p>
+      <p>&copy; 2025 Θανάσης Μπαταλάς. <span data-lang-en="All rights reserved." data-lang-el="Με επιφύλαξη παντός δικαιώματος.">Με επιφύλαξη παντός δικαιώματος.</span></p>
     </div>
   </div>
 </footer>
@@ -627,60 +488,10 @@
 <!-- AOS Animation Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
+<!-- Swiper Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.js"></script>
+
 <!-- Custom JS -->
-<script>
-  // Initialize AOS animations
-  AOS.init({
-    once: true
-  });
-
-  // Add scrolled class to navbar on scroll
-  document.addEventListener("DOMContentLoaded", function() {
-    const navbar = document.querySelector('.navbar');
-
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: 'smooth'
-          });
-
-          // Close mobile menu if open
-          const navbarCollapse = document.querySelector('.navbar-collapse');
-          if (navbarCollapse.classList.contains('show')) {
-            document.querySelector('.navbar-toggler').click();
-          }
-        }
-      });
-    });
-
-    // Video hover effects
-    const videoCards = document.querySelectorAll('.video-card');
-    videoCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        card.querySelector('iframe').style.transform = 'scale(1.05)';
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.querySelector('iframe').style.transform = 'scale(1)';
-      });
-    });
-  });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
